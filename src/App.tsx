@@ -7,8 +7,8 @@ function App() {
 
   return (
     <BookStoreThemeProiver>
-      <ThemeSwitcher />
       <Layout>
+        <ThemeSwitcher />
         <Home />
       </Layout>
     </BookStoreThemeProiver>
