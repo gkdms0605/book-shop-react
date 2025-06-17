@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { ButtonScheme, ButtonSize } from "../../style/theme";
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   size: ButtonSize;
   scheme: ButtonScheme;
-  disabled: boolean;
-  isLoading: boolean;
+  disabled?: boolean;
+  isLoading?: boolean;
 }
 
 function Button({ children, size, scheme, disabled, isLoading }: ButtonProps) {
