@@ -5,15 +5,17 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   size: ButtonSize;
   scheme: ButtonScheme;
+  onClick?: () => void;
   disabled?: boolean;
   isLoading?: boolean;
 }
 
-function Button({ children, size, scheme, disabled, isLoading }: ButtonProps) {
+function Button({ children, size, scheme, onClick, disabled, isLoading }: ButtonProps) {
   return (
     <ButtonStyle
       size={size}
       scheme={scheme}
+      onClick={onClick}
       disabled={disabled}
       isLoading={isLoading}
     >
