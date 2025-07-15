@@ -1,4 +1,4 @@
-import { Book } from "../models/book.model";
+import { Book, BookDetail } from "../models/book.model";
 import { Pagination } from "../models/pagination.model";
 import { httpClient } from "./http";
 
@@ -22,7 +22,6 @@ export const fetchBooks = async (params: FetchBooksParams) => {
 
   return response.data;
 } catch (err) {
-  console.log(err);
   return {
     books: [],
     pagination: {
@@ -31,4 +30,24 @@ export const fetchBooks = async (params: FetchBooksParams) => {
     }
   }
 }
+};
+
+export const fetchBook = async (bookId: string) => {
+  try {
+    const response = await httpClient.get<BookDetail>(`/books/${bookId}`);
+    return response.data;
+  } catch (error) {
+    console.error("fetchBook error:", error);  // 에러 원인 추적용
+    throw error; // 에러 다시 던져서 useEffect에서 처리 가능
+  }
+}
+
+export const likeBook = async (bookId: number) => {
+  const response = await httpClient.post(`/likes/${bookId}`);
+  return response.data;
+}
+
+export const unlikeBook = async (bookId: number) => {
+  const response = await httpClient.delete(`/likes/${bookId}`);
+  return response.data;
 }

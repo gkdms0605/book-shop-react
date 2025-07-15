@@ -10,14 +10,14 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
 }
 
-function Button({ children, size, scheme, onClick, disabled, isLoading }: ButtonProps) {
+function Button({ children, size, scheme, onClick, disabled, isLoading: isloading }: ButtonProps) {
   return (
     <ButtonStyle
       size={size}
       scheme={scheme}
       onClick={onClick}
       disabled={disabled}
-      isLoading={isLoading}
+      isLoading={isloading}
     >
       {children}
     </ButtonStyle>

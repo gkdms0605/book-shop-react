@@ -31,7 +31,7 @@ function BooksViewSwitcher() {
     if(!searchParams.get(QUERYSTRING.VIEW)) {
       handelSwitch('grid');
     }
-  }, [])
+  })
 
   return (
     <BooksViewSwitcherStyle>

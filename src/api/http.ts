@@ -10,7 +10,7 @@ export const createClient = (config?: AxiosRequestConfig) => {
     timeout: DEFAULT_TIMEOUT,
     headers: {
       "Content-Type": "application/json",
-      Authorization: getToken() ? getToken() : "",
+      Authorization: getToken() ?  `Bearer ${getToken()}` : "",
     },
     withCredentials: true,
     ...config,
@@ -24,6 +24,7 @@ export const createClient = (config?: AxiosRequestConfig) => {
       if(error.response) {
         if (error.response.status === 401) {
         removeToken();
+        axios.post('/users/logout', { withCredentials: true });
         window.location.href = "/login";
         return;
       }

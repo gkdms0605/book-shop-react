@@ -20,12 +20,9 @@ function BooksFilter() {
     }
 
     setSearchParams(newSearchParams);
-
-    console.log(newSearchParams);
   }
 
   const currentCategory = searchParams.get(QUERYSTRING.CATEGORY_ID);
-  console.log(currentCategory);
 
   const handleNews = () => {
     const newSearchParams = new URLSearchParams(searchParams);
