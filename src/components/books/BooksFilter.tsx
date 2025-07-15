@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useCategory } from "../../hooks/useCategory";
 import Button from "../common/button";
 import { useSearchParams } from "react-router-dom";
+import { QUERYSTRING } from "../../constants/queryString";
 
 function BooksFilter() {
   const {category} = useCategory();
@@ -13,9 +14,9 @@ function BooksFilter() {
     //URLSearchParams: new -> 인스턴스 생성 -> 인스턴스를 활용해 querystring의 내용을 엑세스 또는 set을 할 수 있도록 함.
 
     if(category_id === null) {
-      newSearchParams.delete('category_id');
+      newSearchParams.delete(QUERYSTRING.CATEGORY_ID);
     } else {
-      newSearchParams.set('category_id', category_id.toString());
+      newSearchParams.set(QUERYSTRING.CATEGORY_ID, category_id.toString());
     }
 
     setSearchParams(newSearchParams);
@@ -23,9 +24,20 @@ function BooksFilter() {
     console.log(newSearchParams);
   }
 
-  const currentCategory = searchParams.get('category_id');
+  const currentCategory = searchParams.get(QUERYSTRING.CATEGORY_ID);
   console.log(currentCategory);
 
+  const handleNews = () => {
+    const newSearchParams = new URLSearchParams(searchParams);
+
+    if(newSearchParams.has(QUERYSTRING.NEWS)) {
+      newSearchParams.delete(QUERYSTRING.NEWS);
+    } else {
+      newSearchParams.set(QUERYSTRING.NEWS, "true");
+    }
+
+    setSearchParams(newSearchParams);
+  }
 
   return (
     <BooksFilterStyle>
@@ -37,7 +49,7 @@ function BooksFilter() {
         }
       </div>
       <div className="new">
-        <Button size="medium" scheme='normal'>신간</Button>
+        <Button size="medium" scheme={searchParams.has('news') ? 'primary' : 'normal'} onClick={handleNews}>신간</Button>
       </div>
     </BooksFilterStyle>
   )

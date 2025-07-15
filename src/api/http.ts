@@ -21,12 +21,14 @@ export const createClient = (config?: AxiosRequestConfig) => {
       return response;
     },
     (error) => {
-      if (error.response.status === 401) {
+      if(error.response) {
+        if (error.response.status === 401) {
         removeToken();
         window.location.href = "/login";
         return;
       }
       return Promise.reject(error);
+    }
     }
   );
 

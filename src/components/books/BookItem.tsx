@@ -3,14 +3,18 @@ import { Book } from "../../models/book.model";
 import { getImgSrc } from "../../utils/image";
 import { formatNumbers } from "../../utils/format";
 import { FaHeart } from "react-icons/fa";
+import { ViewMode } from "./BooksViewSwitcher";
 
 interface BookItemProps {
   book: Book;
+  view?: ViewMode;
 }
 
-function BookItem({ book }: BookItemProps) {
+function BookItem({ book, view }: BookItemProps) {
+  console.log(view);
+  
   return (
-    <BookItemStyle>
+    <BookItemStyle view={view}>
       <div className="img">
         <img src={getImgSrc(book.img)} alt={book.title} />
       </div>
@@ -28,14 +32,15 @@ function BookItem({ book }: BookItemProps) {
   );
 }
 
-const BookItemStyle = styled.div`
+const BookItemStyle = styled.div<Pick<BookItemProps, "view">>`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({view}) => (view === 'grid' ? 'column' : 'row')};
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
 
   .img {
     border-radius: ${({ theme }) => theme.borderRadius.default};
     overflow: hidden;
+    width: ${({view}) => view === 'grid' ? 'auto' : '160px'};
     img {
       max-width: 100%;
     }
@@ -44,6 +49,7 @@ const BookItemStyle = styled.div`
   .content {
     padding: 16px;
     position: relative;
+    flex: ${({view}) => (view === 'grid' ? 0 : 1)};
 
     .title {
       font-size: 0.875rem;
