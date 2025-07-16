@@ -8,9 +8,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => void;
   disabled?: boolean;
   isLoading?: boolean;
+  type?: "button" | "submit" | "reset";
 }
 
-function Button({ children, size, scheme, onClick, disabled, isLoading: isloading }: ButtonProps) {
+function Button({ children, size, scheme, onClick, disabled, isLoading: isloading, type }: ButtonProps) {
   return (
     <ButtonStyle
       size={size}
@@ -18,6 +19,7 @@ function Button({ children, size, scheme, onClick, disabled, isLoading: isloadin
       onClick={onClick}
       disabled={disabled}
       isLoading={isloading}
+      type={type}
     >
       {children}
     </ButtonStyle>
