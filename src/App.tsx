@@ -4,7 +4,7 @@ import Error from "./components/common/Error";
 import { BookStoreThemeProiver } from "./components/context/ThemeContext";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Signup from "./pages/Signup";
-import ResetPassword from "./pages/reset";
+import ResetPassword from "./pages/ResetPassword";
 import Login from "./pages/Login";
 import Books from "./pages/Books";
 import BookDetail from "./pages/BookDetail";
