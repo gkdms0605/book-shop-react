@@ -53,6 +53,13 @@
     ]
   },
   "devDependencies": {
-    "craco-alias": "^3.0.1"
+    "@faker-js/faker": "^9.9.0",
+    "craco-alias": "^3.0.1",
+    "msw": "^2.10.4"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
