@@ -11,6 +11,8 @@ import BookDetail from "./pages/BookDetail";
 import Cart from "./pages/Cart";
 import Order from "./pages/Order";
 import OrderList from "./pages/OrderList";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./api/queryClient";
 
 const routeList = [
   {
@@ -58,12 +60,14 @@ const router = createBrowserRouter(routeList.map((item) => {
     errorElement: <Error />
   }}))
 
-function App() {
-  return (
-    <BookStoreThemeProiver>
-      <RouterProvider router={router}></RouterProvider>
-    </BookStoreThemeProiver>
-  );
-}
+  function App() {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <BookStoreThemeProiver>
+          <RouterProvider router={router}></RouterProvider>
+        </BookStoreThemeProiver>
+      </QueryClientProvider>
+    );
+  }
 
 export default App;
