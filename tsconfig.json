@@ -20,8 +20,10 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
+  "extends": "./tsconfig.paths.json",
   "include": [
     "src",
-    "styled.d.ts"
+    "styled.d.ts",
+    "craco.config.js"
   ]
 }
