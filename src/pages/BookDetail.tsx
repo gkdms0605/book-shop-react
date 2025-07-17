@@ -8,6 +8,7 @@ import { formatDate, formatNumbers } from "../utils/format";
 import EllipsisBox from "../components/common/EllipsisBox";
 import LikeButton from "../components/book/LikeButton";
 import AddToCart from "../components/book/AddToCart";
+import BookReview from "@/components/book/BookReview";
 
 const bookInfoList = [
   {
@@ -88,6 +89,9 @@ function BookDetail() {
 
           <Title size="medium">목차</Title>
           <p className="index">{book.contents}</p>
+
+          <Title size="medium">리뷰</Title>
+          <BookReview reviews={reviews}/>
       </div>
     </BookDetailStyle>
   );
