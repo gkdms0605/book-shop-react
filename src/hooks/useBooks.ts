@@ -16,13 +16,13 @@ export const useBooks = () => {
       Number(params.get(QUERYSTRING.CATEGORY_ID)) : undefined,
       news: params.get(QUERYSTRING.NEWS) ? true : undefined,
       currentPage: params.get(QUERYSTRING.PAGE) ? Number(params.get(QUERYSTRING.PAGE)) : undefined,
-      limit: LIMIT, 
+      limit: LIMIT,
   })});
 
   return {
     books: booksData?.books, 
     pagination: booksData?.pagination, 
-    isEmpty: booksData?.books.length == 0,
+    isEmpty: booksData?.books.length === 0,
     isBooksLoading,
   };
 }

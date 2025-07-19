@@ -1,21 +1,22 @@
-import Button from "../components/common/button";
-import InputText from "../components/common/InputText";
-import Title from "../components/common/Title";
-import ThemeSwitcher from "../components/header/ThemeSwitcher";
-import { formatNumbers } from "../utils/format";
-
-const COUNT = 10000;
+import styled from "styled-components";
+import MainReview from "@/components/main/MainReview";
+import { useMain } from "@/hooks/useMain";
+import Title from "@/components/common/Title";
 
 function Home() {
+  const {reviews} = useMain();
+
   return (
-    <>
-      <ThemeSwitcher />
-      <Title size="large">Home body</Title>
-      <Button size="large" scheme="normal" disabled={false} isLoading={false}>버튼 테스트</Button>
-      <InputText placeholder="여기에 입력하세요"></InputText>
-      <div>count: ${formatNumbers(COUNT)}</div>
-    </>
+    <HomeStyle>
+      {}
+      {}
+      {}
+      <Title size={"large"}>리뷰</Title>
+      {<MainReview reviews={reviews}/>}
+    </HomeStyle>
   );
 }
+
+const HomeStyle = styled.div``;
 
 export default Home;

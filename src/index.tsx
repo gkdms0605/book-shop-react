@@ -7,9 +7,13 @@ import { light } from "./style/theme";
 async function mountApp() {
   
   if (process.env.NODE_ENV === "development") {
-    const {worker} = require("./mock/browser");
-    worker.start();
-  }
+  const { worker } = require("./mock/browser");
+  await worker.start({
+    onUnhandledRequest: "warn",
+  }).then(() => {
+    console.log("[MSW] worker started!"); // 이 로그 꼭 찍혀야 함
+  });
+}
 
   const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
