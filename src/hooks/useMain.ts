@@ -1,11 +1,18 @@
-import { fetchBooks } from "@/api/books.api";
+import { fetchBestBooks, fetchBooks } from "@/api/books.api";
 import { fetchReviewAll } from "@/api/review.api";
+import { ViewMode } from "@/components/books/BooksViewSwitcher";
 import { Book, BookReviewItem } from "@/models/book.model";
 import { useEffect, useState } from "react";
+
+interface Props {
+  book: Book;
+  view?: ViewMode;
+}
 
 export const useMain = () => {
   const [reviews, setReviews] = useState<BookReviewItem[]>([]);
   const [newBooks, setNewBooks] = useState<Book[]>([]);
+  const [bestBooks, setBestBooks] = useState<Book[]>([]);
 
   useEffect(() => {
     fetchReviewAll().then((reviews) => {
@@ -20,7 +27,11 @@ export const useMain = () => {
     }).then(({books}) => {
       setNewBooks(books);
     });
+
+    fetchBestBooks().then((books) => {
+      setBestBooks(books);
+    });
   }, []);
 
-  return { reviews, newBooks };
+  return { reviews, newBooks, bestBooks };
 }
