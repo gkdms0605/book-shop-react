@@ -22,7 +22,7 @@ export const useOrders = () => {
       setSelectedItemId(orderId);
       setOrders(
         orders.map((item) => {
-          if(item.id == orderId) {
+          if(item.id === orderId) {
             return {
               ...item,
               detail: orderDetail,
